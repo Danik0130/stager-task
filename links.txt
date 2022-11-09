@@ -1,0 +1,3 @@
+https://pkg.go.dev/flag
+https://vk.com/
+https://music.yandex.ru/
