@@ -8,14 +8,18 @@ import (
 
 func Generator(flows int, maxNumber int) {
 	wg := new(sync.WaitGroup)
-	if flows <= 0 {
+	if flows <= 0 || flows > 100 {
 		fmt.Println("Error: wrong number of flows")
+		return
+	}
+	if maxNumber <= 0 || maxNumber > 100000 {
+		fmt.Println("Wrong Max Number")
 		return
 	}
 	numberChan := make(chan int, flows)
 	stop := make(chan bool)
 	for i := 0; i < flows; i++ {
-		go random(flows, numberChan, stop)
+		go random(maxNumber, numberChan, stop)
 	}
 	wg.Add(1)
 	printer(numberChan, maxNumber, stop, wg)
@@ -23,13 +27,13 @@ func Generator(flows int, maxNumber int) {
 }
 
 // Random генерирует случайные числа в диапазоне от 0 до x в бесконечном цикле, и передаёт значения в буферизированный канал
-func random(flows int, numberChan chan int, stop chan bool) {
+func random(maxNumber int, numberChan chan int, stop chan bool) {
 	for {
 		select { // селектор дожидается отправки данных (закрытия канала), после чего горутины остановятся
 		case <-stop:
 			return
 		default: // если канал не закрыт горутины продолжают работать
-			max := flows
+			max := maxNumber
 			random := rand.Intn(max)
 			numberChan <- random
 		}
