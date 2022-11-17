@@ -2,37 +2,55 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="#">
-    <title>Generator</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="static/css/style.css">
+  <title>Generator</title>
 </head>
 
 <body>
-    <header>
-        <div class="header">
-            <div class="contanier">
-                <div class="table">
-                    <form method="POST" id="inputForm">
-
-                        <label for="flows">Flows</label>
-                        <input id="flows" name="flows" value="3" type="text">
-                        <label for="maxNumber">Max Number</label>
-                        <input id="maxNumber" name="maxNumber" value="15" type="text">
-                        <button type="submit" style="width:100px;">Send</button>
-                    </form>
-                </div>
-            </div>
-
-            <div id="serverMessageBox" style="text-align: center;">
-
-
-            </div>
+  <header>
+    <div class="header">
+      <div class="container">
+        <div class="table">
+          <div class="formname">
+            <p>Random Number Generator</p>
+          </div>
+          <form method="POST" id="inputForm">
+            <table>
+              <tr>
+                <td>
+            <label for="flows">Flows:</label>
+            </td>
+            <td>
+            <input id="flows" name="flows" value="3" type="number" min="1" max="100">
+            </td>
+            <td>
+            <label for="maxNumber" style="margin-left: 20px;">Max Number:</label>
+            </td>
+            <td>
+            <input id="maxNumber" name="maxNumber" value="15" type="number" min="1" max="100000">
+            </td>
+            </tr>
+            <tr>
+              <td colspan="4" align="center" style="padding-top: 20px;">
+            <button type="submit" style="width:150px; height: 30px;">Send</button>
+            </td>
+            </tr>
+            </table>
+          </form>
         </div>
+        <div id="serverMessageBox" style="text-align: center; color: white; margin-top: 10px;">
+        
+        
         </div>
-    </header>
-    <script src="static/main.js"></script>
+      </div>
+    </div>
+    </div>
+  </header>
+  <script src="static/main.js"></script>
 </body>
 
 </html>
