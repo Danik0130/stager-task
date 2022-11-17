@@ -5,23 +5,22 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 )
 
-var Port = ":5555"
+var Port = ":5555" // установили порт сервера
 
 func main() {
-
-	http.HandleFunc("/", ServeFiles)
-	fmt.Println("Serving @ : ", "http://127.0.0.1"+Port)
+ 
+	http.HandleFunc("/", ServeFiles) // создали роутер
+	fmt.Println("Server: ", "http://127.0.0.1"+Port)
 	log.Fatal(http.ListenAndServe(Port, nil))
 }
 
 func ServeFiles(w http.ResponseWriter, r *http.Request) {
 
-	switch r.Method {
+	switch r.Method {  // переключатель, который считывает формат запроса
 
-	case "GET":
+	case "GET": // при запросе GET открываем сайт по абсолютному адресу (для задания по сути не нужно)
 
 		path := r.URL.Path
 
@@ -37,17 +36,17 @@ func ServeFiles(w http.ResponseWriter, r *http.Request) {
 
 		http.ServeFile(w, r, path)
 
-	case "POST":
+	case "POST": // при запросе POST получаем данные из формы, выполняем функцию Generator
 
-		r.ParseMultipartForm(0)
+		r.ParseMultipartForm(0) 
 
-		flows, _ := strconv.Atoi(r.FormValue("flows"))
-		maxNumber, _ := strconv.Atoi(r.FormValue("maxNumber"))
+		flows, _ := strconv.Atoi(r.FormValue("flows")) // получаем значение потоков с формы
+		maxNumber, _ := strconv.Atoi(r.FormValue("maxNumber")) // получаем максимальное число с формы
 
 		fmt.Println("----------------------------------")
 		fmt.Println("Messages from Client: ", flows, maxNumber)
-		// respond to client's request
-		fmt.Fprintf(w, "Server: %s \n", strconv.Itoa(flows)+" | "+time.Now().Format(time.RFC3339))
+		// ответ на запрос клиента
+		fmt.Fprintf(w, "Server: %s \n", strconv.Itoa(flows)+" "+strconv.Itoa(maxNumber))
 		Generator(flows, maxNumber)
 
 	default:
