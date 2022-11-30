@@ -1,0 +1,35 @@
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1328px;
+  margin: 0 auto;
+  height: 100vh;
+}
+body {
+  background-color:rgb(100, 148, 237);
+}
+.table {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+label {
+  margin-right: 5px;
+}
+.formname {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100px;
+  background-color: rgb(107, 159, 255);
+  border-radius: 100px;
+  padding: 50px 50px;
+  margin-bottom: 50px;
+  width: 770px;
+
+}
